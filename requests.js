@@ -26,9 +26,9 @@ function logInfo(obj) {
         'Name:', chalk.blue(obj?.fullName),
         '| Score:', chalk.yellow(obj?.score),
         '| Energy:', chalk.cyan(obj?.energyLeft),
-        '| Energy Boost:', chalk.magenta(obj?.boosts[0]?.level),
+        '| Max Energy:', chalk.magenta(obj?.energyMax),
+        '| Energy Per second:', chalk.red(obj?.energyPerSecond),
         '| Rank:', chalk.green(obj?.rank),
-        '| Turbo:', chalk.red(obj?.isTurboAvailable),
         '| Cheat Codes:', chalk.green(obj?.cheatCodes)
     );
 }

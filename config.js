@@ -5,9 +5,8 @@ const baseUrl = 'https://elcevb3oz4.execute-api.eu-central-1.amazonaws.com';
 
 const urls = {
     profile: `${baseUrl}/user/profile`,
+    buy_boost: `${baseUrl}/game/buy-boost`,
     save_clicks: `${baseUrl}/game/save-clicks`,
-    // get_user_info: `${baseUrl}/get_user_info`,
-    // try_your_luck: `${baseUrl}/try_your_luck`,
 }
 
 function setToken() {
