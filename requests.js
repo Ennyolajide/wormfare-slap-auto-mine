@@ -1,10 +1,14 @@
+require('dotenv').config();
 const chalk = require('chalk');
 const axios = require('axios');
 const { urls, getHeaders } = require('./config');
 
+const env = process.env;
+
 function buildSlapData(slaps, turbo) {
-    return { "startTimestamp": Date.now(), "amount": slaps, "isTurbo": turbo };
+    return { "startTimestamp": (Date.now() - parseInt(env.SERVER_TIME_DIFFERENCE)), "amount": slaps, "isTurbo": turbo };
 }
+
 
 async function saveCoins(slaps, turbo=false) {
     const data = buildSlapData(slaps, turbo);
