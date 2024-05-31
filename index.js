@@ -14,7 +14,7 @@ axios.get(urls.profile, { headers: getHeaders() })
 
         // Function to execute
         function handleCoinCollection() {
-            (id && ((energyLeft ?? 0) > 0)) ? saveCoins(slaps(env), false) : exitProcess();
+            (id && (energyLeft > 0)) ? saveCoins(slaps(env), false) : exitProcess();
         }
 
         handleCoinCollection();
