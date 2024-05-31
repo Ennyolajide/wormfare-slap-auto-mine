@@ -10,7 +10,6 @@ const env = process.env;
 axios.get(urls.profile, { headers: getHeaders() })
     .then((res) => {
         const { id, energyLeft } = res.data;
-        console.log(res.data);
         id ? logInfo(res.data) : false;
 
         // Function to execute
