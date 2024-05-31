@@ -10,7 +10,8 @@ async function saveCoins(slaps, turbo=false) {
     const data = buildSlapData(slaps, turbo);
     return await axios.post(urls.save_clicks, data, { headers: getHeaders() }).then((res) => {
         const { id, energyLeft } = res.data;
-        (id && (energyLeft > 0)) ? logTap(slaps, res.data) : exitProcess();
+        id ? logTap(slaps, res.data) : false;
+        (id && (energyLeft <= 0)) ? exitProcess() : false;
     }).catch((error) => {
         logError(error);
     });

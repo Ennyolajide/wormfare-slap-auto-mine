@@ -7,6 +7,8 @@ const { saveCoins, logInfo, exitProcess } = require('./requests');
 const env = process.env;
 
 
+saveCoins(1, false);
+
 axios.get(urls.profile, { headers: getHeaders() })
     .then((res) => {
         const { id, energyLeft } = res.data;
