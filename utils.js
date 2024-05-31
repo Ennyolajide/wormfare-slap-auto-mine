@@ -11,4 +11,4 @@ function interval(env) {
 }
 
 
-module.exports = { slaps, interval }
+module.exports = { getRandom, slaps, interval }

@@ -1,28 +1,38 @@
 require('dotenv').config();
 const axios = require('axios');
 const { urls, getHeaders } = require('./config');
-const { slaps, interval } = require('./utils.js');
+const { getRandom, slaps, interval } = require('./utils.js');
 const { saveCoins, logInfo, exitProcess } = require('./requests');
 
 const env = process.env;
 
 
-saveCoins(1, false);
+async function main() {
+    try {
 
-axios.get(urls.profile, { headers: getHeaders() })
-    .then((res) => {
-        const { id, energyLeft } = res.data;
-        id ? logInfo(res.data) : false;
+        await saveCoins(getRandom(1,5), false);
 
-        // Function to execute
-        function handleCoinCollection() {
-            (id && (energyLeft > 0)) ? saveCoins(slaps(env), false) : exitProcess();
-        }
+        axios.get(urls.profile, { headers: getHeaders() })
+            .then((res) => {
+                const { id, energyLeft } = res.data;
+                id ? logInfo(res.data) : false;
 
-        handleCoinCollection();
+                // Function to execute
+                function handleCoinCollection() {
+                    (id && (energyLeft > 0)) ? saveCoins(slaps(env), false) : exitProcess();
+                }
 
-        setInterval(handleCoinCollection, interval(env) * 1000);
-    })
-    .catch(error => {
+                handleCoinCollection();
+
+                setInterval(handleCoinCollection, interval(env) * 1000);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    } catch (error) {
         console.log(error);
-    });
+    }
+}
+
+
+main();
