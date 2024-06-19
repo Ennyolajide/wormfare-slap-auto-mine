@@ -8,7 +8,7 @@ function slaps(env, turbo=false){
 }
 
 function interval(env, turbo=false) {
-    return !turbo ? getRandom(parseInt(env.MIN_INTERVAL), parseInt(env.MAX_INTERVAL)): parseInt(env.TURBO_INTERVAL);
+    return getRandom(parseInt(env.MIN_INTERVAL), parseInt(env.MAX_INTERVAL));
 }
 
 
