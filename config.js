@@ -4,9 +4,11 @@ const env = process.env;
 const baseUrl = 'https://elcevb3oz4.execute-api.eu-central-1.amazonaws.com';
 
 const urls = {
+    shop: `${baseUrl}/game/shop`,
     profile: `${baseUrl}/user/profile`,
     buy_boost: `${baseUrl}/game/buy-boost`,
     save_clicks: `${baseUrl}/game/save-clicks`,
+    activate_boost: `${baseUrl}/game/activate-daily-boost`
 }
 
 function setToken() {

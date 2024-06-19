@@ -1,14 +1,21 @@
-require('dotenv').config();
 const chalk = require('chalk');
 const axios = require('axios');
 const { urls, getHeaders } = require('./config');
 
 const env = process.env;
 
+async function activateBoost() {
+    await axios.post(urls.activate_boost, { 'type': 'turbo' }, { headers: getHeaders() }).then((res) => {
+        res.data ?  console.log(`Activating Turbo Boost ...`, chalk.green('\u2714')) : false;
+    }).catch((error) => {
+        console.log(`Activating Turbo Boost ...`, chalk.red('\u2716'))
+    });
+
+}
+
 function buildSlapData(slaps, turbo) {
     return { "startTimestamp": (Date.now() - parseInt(env.SERVER_TIME_DIFFERENCE)), "amount": slaps, "isTurbo": turbo };
 }
-
 
 async function saveCoins(slaps, turbo=false) {
     const data = buildSlapData(slaps, turbo);
@@ -33,10 +40,6 @@ function logInfo(obj) {
     );
 }
 
-function logRestoreAttempt(success) {
-    console.log(success ? chalk.green('Restored attempt') : chalk.red('Failed to restore attempt'));
-}
-
 function logTap(taps, obj) {
     console.log(
         'Taping ...', chalk.blue('->'),
@@ -47,9 +50,9 @@ function logTap(taps, obj) {
     );
 }
 
-
 function logError(error) {
     console.log(error.response ? error.response.data : error.request ? error.request : 'Error', error.message);
+    process.exit();
 }
 
 function exitProcess() {
@@ -57,4 +60,4 @@ function exitProcess() {
     process.exit();
 }
 
-module.exports = { saveCoins, logInfo, logTap, logError, exitProcess }
+module.exports = { activateBoost, saveCoins, logInfo, logTap, logError, exitProcess }
