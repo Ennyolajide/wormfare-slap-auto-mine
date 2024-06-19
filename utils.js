@@ -7,7 +7,7 @@ function slaps(env, turbo=false){
     return turbo ? (_slaps * parseInt(env.TURBO_MULTIPLIER ?? 1)) : _slaps;
 }
 
-function interval(env, turbo=false) {
+function interval(env) {
     return getRandom(parseInt(env.MIN_INTERVAL), parseInt(env.MAX_INTERVAL));
 }
 
